@@ -1,0 +1,45 @@
+<div class="full-screen-container">
+  <h1 class="mb-4">Choice Based Daily Tips and Quotes Email Service</h1>
+  <div class="d-flex">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 filter-form-selection px-0">
+      <div class="card w-100">
+        <div class="card-header">
+          <h4 class="card-title">Subscribe to Quotes</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="subscribeForm">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" formControlName="email" placeholder="Enter your email" (input)="validateEmail()" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="topics">Select Topics:</label>
+              <div *ngFor="let topic of topics; let i = index">
+                <input type="checkbox" (change)="onCheckboxChange($event, i)" [checked]="subscribeForm.value.topics[i]"> {{ topic }}
+              </div>
+            </div>
+            <button type="button" id="subscribeButton" class="btn btn-primary me-2" (click)="subscribe()">Subscribe</button>
+            <button type="button" id="unsubscribeButton" class="btn btn-success" (click)="unsubscribe()">Unsubscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12 filter-form-selection px-0 ms-4">
+      <div class="card w-100">
+        <div class="card-header">
+          <h4 class="card-title">Request for a New Topic</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="requestForm">
+            <div class="form-group">
+              <label for="newTopic">New Topic:</label>
+              <input type="text" id="newTopic" formControlName="newTopic" placeholder="Enter new topic" class="form-control" required>
+            </div>
+            <button type="button" id="requestButton" class="btn btn-primary mt-3" (click)="requestTopic()">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
